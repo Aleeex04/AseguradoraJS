@@ -1,0 +1,101 @@
+{
+    "marcas": [
+      {
+        "marca": "Toyota",
+        "modelos": ["Corolla", "Camry", "RAV4", "Hilux", "Land Cruiser", "Supra", "Yaris", "Prius", "C-HR"]
+      },
+      {
+        "marca": "Ford",
+        "modelos": ["Fiesta", "Focus", "Mustang", "Explorer", "F-150", "Kuga", "Mondeo", "Edge", "Ranger"]
+      },
+      {
+        "marca": "Honda",
+        "modelos": ["Civic", "Accord", "CR-V", "Pilot", "Fit", "HR-V", "Ridgeline", "Odyssey", "Passport"]
+      },
+      {
+        "marca": "BMW",
+        "modelos": ["Serie 1","Serie 3", "X5", "M3", "Serie 5", "X3", "Serie 7", "Z4", "X6"]
+      },
+      {
+        "marca": "Audi",
+        "modelos": ["A1","A2","A3", "A4", "A5", "A6", "Q2", "Q3", "Q5", "Q7", "A8", "R8"]
+      },
+      {
+        "marca": "Mercedes-Benz",
+        "modelos": ["Clase A", "Clase C", "Clase E", "Clase S", "GLC", "GLE", "CLS", "GLA", "Clase G"]
+      },
+      {
+        "marca": "Volkswagen",
+        "modelos": ["Golf", "Polo", "Passat", "Tiguan", "Jetta", "Touareg", "Arteon", "ID.4", "Up!"]
+      },
+      {
+        "marca": "Chevrolet",
+        "modelos": ["Malibu", "Cruze", "Impala", "Equinox", "Traverse", "Silverado", "Tahoe", "Bolt EV"]
+      },
+      {
+        "marca": "Nissan",
+        "modelos": ["Micra", "Juke", "Qashqai", "X-Trail", "Navara", "370Z", "GT-R", "Leaf", "Patrol"]
+      },
+      {
+        "marca": "Peugeot",
+        "modelos": ["208", "308", "508", "3008", "5008", "Partner", "Rifter", "2008", "Expert"]
+      },
+      {
+        "marca": "Renault",
+        "modelos": ["Clio", "Megane", "Captur", "Kadjar", "Twingo", "Koleos", "Scenic", "Zoe", "Kangoo"]
+      },
+      {
+        "marca": "Fiat",
+        "modelos": ["Panda", "500", "Tipo", "Ducato", "500X", "500L", "Punto", "Doblo", "Fiorino"]
+      },
+      {
+        "marca": "Kia",
+        "modelos": ["Rio", "Ceed", "Sportage", "Sorrento", "Niro", "Stonic", "Picanto", "XCeed", "Carnival"]
+      },
+      {
+        "marca": "Hyundai",
+        "modelos": ["i10", "i20", "i30", "Kona", "Santa Fe", "Tucson", "Palisade", "i40", "Veloster"]
+      },
+      {
+        "marca": "Mazda",
+        "modelos": ["Mazda2", "Mazda3", "Mazda6", "CX-5", "CX-30", "MX-5", "CX-9", "Mazda CX-50"]
+      },
+      {
+        "marca": "Subaru",
+        "modelos": ["Impreza", "Outback", "Forester", "XV", "BRZ", "Ascent", "Levorg", "Crosstrek"]
+      },
+      {
+        "marca": "Land Rover",
+        "modelos": ["Defender", "Discovery", "Range Rover", "Evoque", "Sport", "Velar", "Freelander", "Series"]
+      },
+      {
+        "marca": "Tesla",
+        "modelos": ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck", "Roadster"]
+      },
+      {
+        "marca": "Lexus",
+        "modelos": ["RX", "NX", "UX", "IS", "GS", "LS", "LC", "LX", "CT"]
+      },
+      {
+        "marca": "Porsche",
+        "modelos": ["911", "Cayenne", "Macan", "Panamera", "Taycan", "Boxster", "Cayman"]
+      },
+      {
+        "marca": "Ferrari",
+        "modelos": ["F8 Tributo", "488 GTB", "Roma", "Portofino", "GTC4Lusso", "812 Superfast"]
+      },
+      {
+        "marca": "Maserati",
+        "modelos": ["Ghibli", "Levante", "Quattroporte", "GranTurismo", "Alfieri"]
+      },
+      {
+        "marca": "Aston Martin",
+        "modelos": ["Vantage", "DB11", "DBX", "Rapide", "Vanquish"]
+      },
+      {
+        "marca": "Jaguar",
+        "modelos": ["XE", "XF", "F-Type", "I-Pace", "F-Pace", "E-Pace"]
+      }
+    ]
+  }
+  

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+body header .navbar {
+  background-color: #3e3e3e;
+  padding: 10px 0;
+}
+body header .navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: lightblue;
+}
+body header .navbar .navbar-toggler {
+  color: lightblue;
+}
+body header .navbar .navbar-toggler:hover {
+  color: #fff;
+}
+body header .navbar .nav-link {
+  color: lightblue !important;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  position: relative; /* Necesario para el pseudo-elemento */
+}
+body header .navbar .nav-link:hover {
+  color: #c8c8c8 !important;
+}
+body header .navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: #c8c8c8;
+  transition: width 0.3s ease-in-out;
+}
+body header .navbar .nav-link:hover::after {
+  width: 100%; /* Expande el subrayado al pasar el ratón */
+}
+body #home {
+  height: 100vh;
+  overflow: hidden;
+}
+body #home .titulo {
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+}
+body #home .titulo2 {
+  color: lightblue;
+}
+body #home .lema {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+body #home .carousel-inner img {
+  filter: brightness(50%);
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100vh;
+}
+body footer {
+  background-color: #3e3e3e;
+  color: lightblue;
+  font-size: 1.2rem;
+}/*# sourceMappingURL=styles.css.map */

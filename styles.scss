@@ -1,0 +1,90 @@
+@import 'variables';
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    .navbar {
+        background-color: $primary-color;
+        padding: 10px 0;
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: $secondary-color;
+        }
+        .navbar-toggler{
+          color: $secondary-color;
+        }
+        .navbar-toggler:hover{
+          color: #fff;
+        }
+        .nav-link {
+          color: $secondary-color !important;
+          font-size: 1.1rem;
+          transition: color 0.3s ease;
+          position: relative; /* Necesario para el pseudo-elemento */
+        
+          &:hover {
+            color: $hover-color !important;
+          }
+        
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: $hover-color;
+            transition: width 0.3s ease-in-out;
+          }
+        
+          &:hover::after {
+            width: 100%; /* Expande el subrayado al pasar el ratón */
+          }
+        }
+    }
+  }
+
+
+  #home {
+    height: 100vh;
+    overflow: hidden;
+
+    .titulo {
+      font-size: 4rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      color: $light-color;
+    }
+    
+    .titulo2 {
+      color: $secondary-color; 
+    }
+    
+    .lema {
+      color: $light-color;
+      font-size: 1.5rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    
+    .carousel-inner img {
+      filter: brightness(50%); 
+      object-fit: cover;
+      height: 100vh; 
+    }
+  }
+
+  footer{
+    background-color: $primary-color;
+    color: $secondary-color;
+    font-size: 1.2rem;
+  }
+}
