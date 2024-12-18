@@ -1,6 +1,7 @@
 fetch('json/espanya.json').then((response) => response.json()).then((datos) => { // Convertir la respuesta en JSON
     const selectorComunidad = document.getElementById('region');
-    
+    const selectorProvincia = document.getElementById('province');
+
     // Recorrer las comunidades y agregar las opciones al select de comunidades
     datos.características.forEach(function (comunidad) {
       const option = document.createElement('option');
@@ -12,7 +13,6 @@ fetch('json/espanya.json').then((response) => response.json()).then((datos) => {
     // Evento de cambio para cargar las provincias correspondientes
     selectorComunidad.addEventListener('change', function () {
       const comunidadSeleccionada = this.value;
-      const selectorProvincia = document.getElementById('province');
   
       // Limpiar las provincias previas
       selectorProvincia.innerHTML = '<option value="">Seleccione una provincia</option>';

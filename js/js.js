@@ -1,9 +1,9 @@
 function calcularSeguro() {
     // Obtener valores de entrada
     const fechaNacimiento = new Date(document.getElementById("nacimiento").value);
-    const fechaCarnet = new Date(document.getElementById("license_date").value);
+    const fechaCarnet = new Date(document.getElementById("fecha_carnet").value);
     const tipoVehiculo = document.getElementById("vehicle_type").value;
-    const fechaMatriculacion = new Date(document.getElementById("registration_date").value);
+    const fechaMatriculacion = new Date(document.getElementById("fecha_matriculacion").value);
 
     // Calcular edad, años con el permiso y antigüedad del coche
     const edad = calcularEdad(fechaNacimiento);
@@ -116,13 +116,12 @@ function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioF
         const edad = calcularEdad(fechaNacimiento);
         precioFinalTipo = aplicarPenalizacionPorEdad(edad, precioBaseTipo, precioFinalTipo);
 
-        const fechaCarnet = new Date(document.getElementById("license_date").value);
+        const fechaCarnet = new Date(document.getElementById("fecha_carnet").value);
         const anosConPermiso = calcularAnyosCarnet(fechaCarnet);
         precioFinalTipo = descuentoAnyosCarnet(anosConPermiso, precioBaseTipo, precioFinalTipo);
-
         precioFinalTipo = aplicarPenalizacionPorVehiculo(penalizacionVehiculo, precioBaseTipo, precioFinalTipo);
 
-        const fechaMatriculacion = new Date(document.getElementById("registration_date").value);
+        const fechaMatriculacion = new Date(document.getElementById("fecha_matriculacion").value);
         const anosCoche = calcularAntiguedadCoche(fechaMatriculacion);
         precioFinalTipo = aplicarPenalizacionPorAntiguedadCoche(anosCoche, precioBaseTipo, precioFinalTipo);
 
@@ -148,22 +147,22 @@ function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioF
     document.querySelector("#resultados h2").classList.remove("d-none");
 }
 
-function descartarTarjeta(button) {
+function descartarTarjeta(button) { //Funcion para eliminar la tarjeta del seguro
   const tarjeta = button.closest(".col-12");
   tarjeta.remove();
 }
 
-function contratarSeguro() {
+function contratarSeguro() { //Funcion para contratar el seguro
   const nombre = document.getElementById("nombre").value;
   const apellidos = document.getElementById("apellidos").value;
   alert(`Gracias por contratar. Atentamente tu asesor de seguros ${nombre} ${apellidos}`);
 }
 
-// Cambio de estilo al pasar el ratón sobre el botón "Contratar"
-document.addEventListener("mouseover", function (e) {
-  if (e.target && e.target.classList.contains("contratar")) {
-      e.target.style.backgroundColor = "#28a745";
-      e.target.style.transform = "scale(1.1)";
+// Estilo hover al pasar el ratón sobre el botón "Contratar"
+document.addEventListener("mouseover", function (event) {
+  if (event.target && event.target.classList.contains("contratar")) {
+      event.target.style.backgroundColor = "#28a745";
+      event.target.style.transform = "scale(1.1)";
   }
 });
 
