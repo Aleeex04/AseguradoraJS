@@ -70,6 +70,16 @@ body #home .carousel-inner img {
      object-fit: cover;
   height: 100vh;
 }
+body .tarjeta-seguro {
+  transition: transform 0.3s;
+}
+body .tarjeta-seguro:hover {
+  transform: scale(1.05);
+}
+body .tarjeta-seguro.seleccionado .card.text-center {
+  border-color: #000;
+  background-color: lightblue;
+}
 body footer {
   background-color: #3e3e3e;
   color: lightblue;

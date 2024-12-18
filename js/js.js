@@ -1,34 +1,31 @@
 function calcularSeguro() {
-    // Obtener valores de entrada
+
+    const seguroSeleccionado = document.getElementById("tipo_seguro").value;
     const fechaNacimiento = new Date(document.getElementById("nacimiento").value);
     const fechaCarnet = new Date(document.getElementById("fecha_carnet").value);
     const tipoVehiculo = document.getElementById("vehicle_type").value;
     const fechaMatriculacion = new Date(document.getElementById("fecha_matriculacion").value);
 
-    // Calcular edad, años con el permiso y antigüedad del coche
     const edad = calcularEdad(fechaNacimiento);
     const anosConPermiso = calcularAnyosCarnet(fechaCarnet);
     const anosCoche = calcularAntiguedadCoche(fechaMatriculacion);
 
-    // Precio base según tipo de seguro
     const preciosBase = {
         "terceros": 500, // Tipo 1
         "terceros_ampliado": 650, // Tipo 2
         "franquicia": 750, // Tipo 3
         "todo_riesgo": 1000 // Tipo 4
     };
-
     const penalizacionesVehiculo = {
         "diesel": 0.2, // Diesel: 20%
         "gasolina": 0.1, // Gasolina: 10%
         "hibrido": 0.05, // Híbrido: 5%
         "electrico": 0 // Eléctrico: 0%
     };
-
     const precioBase = preciosBase[document.getElementById("tipo_seguro").value];
     const penalizacionVehiculo = penalizacionesVehiculo[tipoVehiculo] || 0;
 
-    // Calcular precio final
+    // ajustamos el precio final aplicando los descuentos o penalizaciones
     let precioFinal = precioBase;
     precioFinal = aplicarPenalizacionPorEdad(edad, precioBase, precioFinal);
     precioFinal = descuentoAnyosCarnet(anosConPermiso, precioBase, precioFinal);
@@ -36,10 +33,12 @@ function calcularSeguro() {
     precioFinal = aplicarPenalizacionPorAntiguedadCoche(anosCoche, precioBase, precioFinal);
 
     alert(`El precio del seguro es: €${precioFinal.toFixed(2)}`);
-    mostrarResultados(precioBase, penalizacionVehiculo, precioFinal);
+    mostrarResultados(precioBase, penalizacionVehiculo, precioFinal, seguroSeleccionado);
+
+    const resultadosSection = document.getElementById("resultados");
+    resultadosSection.scrollIntoView({ behavior: "smooth" }); //https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
 }
 
-// Función para calcular la edad
 function calcularEdad(fechaNacimiento) {
     const hoy = new Date();
     return hoy.getFullYear() - fechaNacimiento.getFullYear() - 
@@ -47,7 +46,6 @@ function calcularEdad(fechaNacimiento) {
         (hoy.getMonth() === fechaNacimiento.getMonth() && hoy.getDate() < fechaNacimiento.getDate()) ? 1 : 0);
 }
 
-// Función para calcular los años con el permiso
 function calcularAnyosCarnet(fechaCarnet) {
     const hoy = new Date();
     return hoy.getFullYear() - fechaCarnet.getFullYear() - 
@@ -55,13 +53,11 @@ function calcularAnyosCarnet(fechaCarnet) {
         (hoy.getMonth() === fechaCarnet.getMonth() && hoy.getDate() < fechaCarnet.getDate()) ? 1 : 0);
 }
 
-// Función para calcular la antigüedad del coche
 function calcularAntiguedadCoche(fechaMatriculacion) {
     const hoy = new Date();
     return hoy.getFullYear() - fechaMatriculacion.getFullYear();
 }
 
-// Función para aplicar incremento por edad
 function aplicarPenalizacionPorEdad(edad, precioBase, precioFinal) {
     if (edad < 25) {
         precioFinal += precioBase * 0.1;
@@ -70,23 +66,20 @@ function aplicarPenalizacionPorEdad(edad, precioBase, precioFinal) {
     return precioFinal;
 }
 
-// Función para aplicar descuento por años con permiso
 function descuentoAnyosCarnet(anosConPermiso, precioBase, precioFinal) {
-    if (anosConPermiso > 5) {
+    if (anosConPermiso > 5) { //si lleva mas de 5 años conduciendo
         precioFinal -= precioBase * 0.1;
         console.log(`Descuento por años con carnet ${anosConPermiso} == ${precioFinal}`);
     }
     return precioFinal;
 }
 
-// Función para aplicar penalización por tipo de vehículo
 function aplicarPenalizacionPorVehiculo(penalizacionVehiculo, precioBase, precioFinal) {
     precioFinal += precioBase * penalizacionVehiculo;
     console.log(`Penalización por tipo de vehículo: ${penalizacionVehiculo * 100}% == ${precioFinal}`);
     return precioFinal;
 }
 
-// Función para aplicar penalización por antigüedad del coche
 function aplicarPenalizacionPorAntiguedadCoche(anosCoche, precioBase, precioFinal) {
     if (anosCoche > 10) {
         precioFinal += precioBase * (0.01 * (anosCoche - 10));
@@ -95,13 +88,20 @@ function aplicarPenalizacionPorAntiguedadCoche(anosCoche, precioBase, precioFina
     return precioFinal;
 }
 
-function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioFinalSeleccionado) {
+function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioFinalSeleccionado, seguroSeleccionado) {
     const tiposSeguros = ["terceros", "terceros_ampliado", "franquicia", "todo_riesgo"];
     const preciosBase = {
         "terceros": 500,
         "terceros_ampliado": 650,
         "franquicia": 750,
         "todo_riesgo": 1000
+    };
+
+    const seguros = {
+        "terceros": "Terceros",
+        "terceros_ampliado": "Terceros Ampliado",
+        "franquicia": "Con Franquicia",
+        "todo_riesgo": "Todo Riesgo"
     };
 
     const contenedorResultados = document.getElementById("resultados-container");
@@ -125,14 +125,16 @@ function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioF
         const anosCoche = calcularAntiguedadCoche(fechaMatriculacion);
         precioFinalTipo = aplicarPenalizacionPorAntiguedadCoche(anosCoche, precioBaseTipo, precioFinalTipo);
 
-        // Crear tarjeta
         const tarjeta = document.createElement("div");
-        tarjeta.classList.add("col-12", "col-md-3", "mb-4", tipo === document.getElementById("tipo_seguro").value ? "bg-primary" : "bg-light");
+        tarjeta.classList.add("col-12", "col-md-3", "mb-4", "tarjeta-seguro");
+        if (tipo === seguroSeleccionado) {
+            tarjeta.classList.add("seleccionado"); //clase unica para el seguro seleccionado
+        }
 
         tarjeta.innerHTML = `
-            <div class="card text-center">
+             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</h5>
+                    <h5 class="card-title">${seguros[tipo]}</h5>
                     <p class="card-text">Precio: €${precioFinalTipo.toFixed(2)}</p>
                     <button class="btn btn-danger descartar" onclick="descartarTarjeta(this)">Descartar</button>
                     <button class="btn btn-success contratar" onclick="contratarSeguro()">Contratar</button>
@@ -147,28 +149,27 @@ function mostrarResultados(precioBaseSeleccionado, penalizacionVehiculo, precioF
     document.querySelector("#resultados h2").classList.remove("d-none");
 }
 
-function descartarTarjeta(button) { //Funcion para eliminar la tarjeta del seguro
+function descartarTarjeta(button) { 
   const tarjeta = button.closest(".col-12");
   tarjeta.remove();
 }
 
-function contratarSeguro() { //Funcion para contratar el seguro
+function contratarSeguro() { 
   const nombre = document.getElementById("nombre").value;
   const apellidos = document.getElementById("apellidos").value;
-  alert(`Gracias por contratar. Atentamente tu asesor de seguros ${nombre} ${apellidos}`);
+  alert(`Gracias por contratar ${nombre} ${apellidos}! Atentamente tu asesor de seguros Alejandro Roca.`);
 }
 
-// Estilo hover al pasar el ratón sobre el botón "Contratar"
-document.addEventListener("mouseover", function (event) {
+document.addEventListener("mouseover", function (event) { // estilo hover al pasar el ratón encima del botón contratar
   if (event.target && event.target.classList.contains("contratar")) {
       event.target.style.backgroundColor = "#28a745";
       event.target.style.transform = "scale(1.1)";
   }
 });
 
-document.addEventListener("mouseout", function (e) {
-  if (e.target && e.target.classList.contains("contratar")) {
-      e.target.style.backgroundColor = "";
-      e.target.style.transform = "";
+document.addEventListener("mouseout", function (event) {
+  if (event.target && event.target.classList.contains("contratar")) {
+      event.target.style.backgroundColor = "";
+      event.target.style.transform = "";
   }
 });

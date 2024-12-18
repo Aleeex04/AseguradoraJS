@@ -82,6 +82,20 @@ body {
     }
   }
 
+  .tarjeta-seguro {
+    transition: transform 0.3s;
+  }
+
+  .tarjeta-seguro:hover {
+    transform: scale(1.05);
+  }
+
+  .tarjeta-seguro.seleccionado .card.text-center {
+    border-color: $dark-color; 
+    background-color: $secondary-color;  
+  }
+
+
   footer{
     background-color: $primary-color;
     color: $secondary-color;
